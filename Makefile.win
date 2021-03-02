@@ -1,0 +1,48 @@
+# Project: SpaceInvanders
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = SpaceMulti_private.res
+OBJ      = main.o funkcie.o game.o ship.o enemyship.o bullet.o $(RES)
+LINKOBJ  = main.o funkcie.o game.o ship.o enemyship.o bullet.o $(RES)
+LIBS     = -L"C:/Users/stalmachp/Documents/programovanie/compiler/Dev-Cpp/MinGW64/lib" -L"C:/Users/stalmachp/Documents/programovanie/compiler/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -std=gnu++11 -g
+INCS     = -I"C:/Users/stalmachp/Documents/programovanie/compiler/Dev-Cpp/MinGW64/include" -I"C:/Users/stalmachp/Documents/programovanie/compiler/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/stalmachp/Documents/programovanie/compiler/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Users/stalmachp/Documents/programovanie/compiler/Dev-Cpp/MinGW64/include" -I"C:/Users/stalmachp/Documents/programovanie/compiler/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/stalmachp/Documents/programovanie/compiler/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Users/stalmachp/Documents/programovanie/compiler/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = SpaceInvanders.exe
+CXXFLAGS = $(CXXINCS) -g
+CFLAGS   = $(INCS) -g
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+funkcie.o: funkcie.cpp
+	$(CPP) -c funkcie.cpp -o funkcie.o $(CXXFLAGS)
+
+game.o: game.cpp
+	$(CPP) -c game.cpp -o game.o $(CXXFLAGS)
+
+ship.o: ship.cpp
+	$(CPP) -c ship.cpp -o ship.o $(CXXFLAGS)
+
+enemyship.o: enemyship.cpp
+	$(CPP) -c enemyship.cpp -o enemyship.o $(CXXFLAGS)
+
+bullet.o: bullet.cpp
+	$(CPP) -c bullet.cpp -o bullet.o $(CXXFLAGS)
+
+SpaceMulti_private.res: SpaceMulti_private.rc 
+	$(WINDRES) -i SpaceMulti_private.rc --input-format=rc -o SpaceMulti_private.res -O coff 
+
